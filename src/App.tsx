@@ -18,10 +18,15 @@ const trackUrls = [
 
 const App = () => {
 
-  const [trackIndex, setTrackIndex] = useState(0);
+  const [defaultTrackIndex, setDefaultTrackIndex] = useState(0);
+  const [customTrackIndex, setCustomTrackIndex] = useState(0);
 
-  const goToNextTrack = () => {
-    setTrackIndex(trackIndex + 1);
+  const goToNextDefaultTrack = () => {
+    setDefaultTrackIndex(defaultTrackIndex + 1);
+  };
+
+  const goToNextCustomTrack = () => {
+    setCustomTrackIndex(customTrackIndex + 1);
   };
 
   const { data: tracks } = useQuery({
@@ -32,8 +37,8 @@ const App = () => {
   console.log(tracks)
 
   const num_padre_tracks = trackUrls.length
-
-  const track_number = tracks?.length
+  const num_XAl_tracks = tracks?.length
+  const custom_tracks_first_name = tracks?.[customTrackIndex]?.track.name
 
   return (
     <div className="App">
@@ -46,16 +51,25 @@ const App = () => {
           Site d'écoute aveugle (accessibilité+++)
         </p>
       </div>
+      
       <p>Morceau par défaut :</p>
       <audio src={trackUrls[0]} autoPlay controls />
+      
       <p>La sélection du padre : {num_padre_tracks} morceaux du terter</p>
-      <p>Premier morceau : ???</p>
       <div>
-      <audio src={trackUrls[trackIndex]} autoPlay controls />
+      <audio src={trackUrls[defaultTrackIndex]} autoPlay controls />
       </div>
-      <button onClick={goToNextTrack}>Next track</button>
+      <button onClick={goToNextDefaultTrack}>Next track</button>
       <div className="App-buttons"></div>
-      <p>Bientôt sur ce site : {track_number} morceaux du XAl</p>
+
+
+      <p>La sélection du XAl : {num_XAl_tracks} morceaux qui déchirent</p>
+      <p>Morceau en cours : {tracks?.[customTrackIndex]?.track.name}</p>
+      <div>
+      <audio src={tracks?.[customTrackIndex]?.track.preview_url} autoPlay controls />
+      </div>
+      <button onClick={goToNextCustomTrack}>Next track</button>
+      <div className="App-buttons"></div>
     </div>
   );
 };
