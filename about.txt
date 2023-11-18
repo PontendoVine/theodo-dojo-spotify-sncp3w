@@ -1,0 +1,5 @@
+TypeScript dojo by Theodo (16/11/2023)
+
+Website accessing a Spotify playlist and allowing to run it
+
+Done in 3 hours with no prior knowledge of TypeScript
