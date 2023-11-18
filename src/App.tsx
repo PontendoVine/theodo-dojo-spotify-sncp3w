@@ -40,13 +40,6 @@ const App = () => {
   const num_XAl_tracks = tracks?.length
   const custom_tracks_first_name = tracks?.[customTrackIndex]?.track.name
 
-  const AlbumCover = ({ track }) =>  {
-    const src = track.uri ; // A changer ;)
-    return (
-        <img src={src} style={{ width: 400, height: 400 }} />
-    );
-  }
-
   return (
     <div className="App">
       <header className="App-header">
@@ -72,7 +65,6 @@ const App = () => {
 
       <p>La sélection du XAl : {num_XAl_tracks} morceaux qui déchirent</p>
       <p>Morceau en cours : {tracks?.[customTrackIndex]?.track.name}</p>
-      <AlbumCover track={tracks?.[customTrackIndex]} />
       <div>
       <audio src={tracks?.[customTrackIndex]?.track.preview_url} autoPlay controls />
       </div>
